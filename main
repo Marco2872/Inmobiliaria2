@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Cita Inmobiliaria</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        .calendar-day {
+            padding: 10px;
+            border: 1px solid #eee;
+            text-align: center;
+            cursor: pointer;
+        }
+        .calendar-day.available {
+            background-color: #f0f8ff;
+        }
+        .calendar-day.selected {
+            background-color: #007bff;
+            color: white;
+        }
+        #confirmation {
+            margin-top: 20px;
+            border: 1px solid #eee;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Agendar Cita Inmobiliaria</h1>
+        <div class="form-group">
+            <label for="tipoCita">Tipo de Cita:</label>
+            <select id="tipoCita">
+                <option value="visita">Visita a Propiedad</option>
+                <option value="asesoria">Asesoría Inmobiliaria</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha">
+        </div>
+        <div class="form-group">
+            <label for="hora">Hora:</label>
+            <select id="hora">
+                <option value="09:00">09:00 AM</option>
+                <option value="10:00">10:00 AM</option>
+                <option value="11:00">11:00 AM</option>
+                <option value="12:00">12:00 PM</option>
+                <option value="14:00">2:00 PM</option>
+                <option value="15:00">3:00 PM</option>
+                <option value="16:00">4:00 PM</option>
+            </select>
+        </div>
+        <button id="agendar">Agendar Cita</button>
+        <div id="confirmation"></div>
+    </div>
+
+    <script>
+        document.getElementById('agendar').addEventListener('click', function() {
+            const tipoCita = document.getElementById('tipoCita').value;
+            const fecha = document.getElementById('fecha').value;
+            const hora = document.getElementById('hora').value;
+
+            const confirmationDiv = document.getElementById('confirmation');
+            confirmationDiv.innerHTML = `
+                <h2>Confirmación de Cita</h2>
+                <p>Tipo de Cita: ${tipoCita}</p>
+                <p>Fecha: ${fecha}</p>
+                <p>Hora: ${hora}</p>
+                <p>Su cita ha sido agendada con éxito.</p>
+            `;
+        });
+    </script>
+</body>
+</html>
